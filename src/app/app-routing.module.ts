@@ -11,18 +11,43 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SecretaireComponent } from './components/secretaire/secretaire.component';
 import { PagePrincipalComponent } from './components/page-principal/page-principal.component';
 
-const routes: Routes = [
+/* const routes: Routes = [
   { path: 'medecin', component : MedecinComponent , canActivate: [AuthGuardService] },
   { path: 'patient', component : PatientComponent , canActivate: [AuthGuardService]},
   { path: 'register-user', component : RegisterUserComponent , canActivate: [AuthGuardService]},
   { path: 'profile', component : ProfileComponent , canActivate: [AuthGuardService]},
   { path: 'secretaire', component : SecretaireComponent , canActivate: [AuthGuardService]},
   { path: 'login', component : LoginComponent },
- // { path: 'acceuil', component : PagePrincipalComponent, canActivate: [AuthGuardService]},
+  { path: 'layout', component : LayoutComponent, canActivate: [AuthGuardService]},
   { path: 'acceuil', component : PagePrincipalComponent},
-  { path: '', component : PagePrincipalComponent},
+  { path: '', component : LoginComponent},
+  //{ path: '**', redirectTo: '' }
 
-];
+]; */
+ const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'acceuil',
+    component: PagePrincipalComponent,
+    children: [
+      {
+        path: 'medecin',
+        component: MedecinComponent,
+      },
+      {
+        path: 'patient',
+        component: PatientComponent,
+      },
+      {
+        path: 'secretaire',
+        component: SecretaireComponent,
+      }
+    ]
+  }
+]; 
 
 
 
