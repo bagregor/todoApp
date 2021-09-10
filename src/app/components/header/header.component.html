@@ -1,6 +1,6 @@
-<div class="flex justify-between border-b shadow-lg py-2 px-5" fxHide.lt-md>
+<div class="flex items-center justify-between border-b shadow-lg py-2 px-5" fxHide.lt-md>
   <div>
-    <h4 class="text-sm font-bold text-blue-800">ECRITURE</h4>
+    <h4 class="text-sm font-bold text-blue-800">NOM DE LA CLINIC</h4>
   </div>
   <div>
     <div class="flex items-center border rounded-lg bg-gray-100 w-max py-2 px-4 space-x-3 rounded-full py-3 px-6">
@@ -13,44 +13,7 @@
     </div>
   </div>
 
-</div>
+</div> 
 
-<div class="flex justify-between border-b shadow-lg py-5 px-5 bg-gradient-to-b from-blue-900 via-blue-700 to-blue-500" fxShow.lt-md="true"  fxShow="false">
-  <div class="text-white">
-    LOGO
-  </div>
-  <div  class="text-white">
-    <i class="fas fa-search" *ngIf="!display" (click)="display=!display" ></i>
-    <input class="appearance-none bg-transparent border-b-2 w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="search" aria-label="Full name" *ngIf="display" (click)="display=!display">
-  </div>
-  <div  class="text-white">
-    <i class="fas fa-bars" (click)="displaymenu=!displaymenu" ></i>
-  </div>
-</div>
-<div class="flex flex-col bg-gradient-to-b from-blue-900 via-blue-700 to-blue-500" fxShow.lt-md="true"  fxShow="false" *ngIf="displaymenu">
-  <div class="border-b py-5 px-5">
-    <a href="#" class="flex items-center text-sm text-center font-semibold text-white hover:text-black transition duration-300" 
-      routerLink= 'medecin' routerLinkActive = 'active'
-      >
-        <i class="fas fa-stethoscope">   MEDECIN </i>
-       </a
-      >
-  </div>
-  <div class="border-b py-5 px-5">
-    <a href="#" class="flex items-center text-sm text-center font-semibold text-white hover:text-black transition duration-300"
-      routerLink= 'secretaire' routerLinkActive = 'active'
-      >
-        <i class="fa fa-user-nurse">  SECRETAIRE</i></a
-      >
-  </div>
-  <div class="border-b py-5 px-5">
-    <a href="#" class="flex items-center text-sm text-center font-semibold text-white hover:text-black transition duration-300"
-      routerLink= 'patient' routerLinkActive = 'active'
-      >
-        <i class="fas fa-user-alt">  PATIENT</i>
-        </a
-      >
-  </div>
-</div>
 
 

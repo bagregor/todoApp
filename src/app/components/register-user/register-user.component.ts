@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/model/user';
+import { UsersService } from 'src/services/users.service';
 
 @Component({
   selector: 'app-register-user',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterUserComponent implements OnInit {
 
-  constructor() { }
+  users! : User[];
+  constructor(private userService : UsersService) { }
 
   ngOnInit(): void {
+    this.loadAllUsers();
+  }
+
+
+  loadAllUsers(){
+    this.userService.getAllUsers().pipe().subscribe(
+        users => {
+             this.users = users;
+             return this.users;
+        });
   }
 
 }

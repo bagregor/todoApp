@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthGuardService } from 'src/app/_guards/auth.guard';
 import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
@@ -16,9 +17,12 @@ export class LoginComponent implements OnInit {
 
     constructor(
       private formBuilder: FormBuilder,
-        private router: Router,
+       private router: Router,
+       private authenticationService : AuthenticationService
     ) {
-      
+      if (this.authenticationService.currentUserValue) { 
+        this.router.navigate(['/']);
+      }
     }
 
   ngOnInit(): void {
@@ -39,14 +43,24 @@ export class LoginComponent implements OnInit {
             console.log('Veuillez saisir des infos valides!');
         } else {
 
-          if (this.f.username.value === "admin" && this.f.password.value === "admin") {
-            console.log("Im here aceuil")
-
-            this.router.navigateByUrl(this.returnUrl || 'acceuil');
-          }else {
-
-              console.log("Une erreur s'est produite");
-          }
+          this.authenticationService.login(this.f.username.value, this.f.password.value)
+              .pipe()
+              .subscribe(
+                  () => {
+  
+                      this.router.navigateByUrl('/acceuil');
+                      //window.location.reload();
+                  },
+                  error => {
+                   
+                    this.errorString = JSON.stringify(error.status);
+                   
+                    if(!(this.errorString.localeCompare(JSON.stringify(error.status))) == true){
+                  
+                      console.error('Les identifications sont erronées !');
+                    }
+  
+            });
         
         }
     }
