@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { AuthGuardService } from './_guards/auth.guard';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { PagePrincipalComponent } from './components/page-principal/page-principal.component';
 import { MedecinComponent } from './components/medecin/medecin.component';
 import { PatientComponent } from './components/patient/patient.component';

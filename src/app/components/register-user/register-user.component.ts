@@ -5,7 +5,7 @@ import { UsersService } from 'src/services/users.service';
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.sass']
+  styleUrls: ['./register-user.component.scss']
 })
 export class RegisterUserComponent implements OnInit {
 
@@ -23,6 +23,17 @@ export class RegisterUserComponent implements OnInit {
              this.users = users;
              return this.users;
         });
+  }
+
+  openDialogForAddUser(){
+    console.log("Im in modal for add user")
+    /* let dialogRef = this.dialog.open(DialogMessageComponent, {
+      data: { data : id },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    }); */
   }
 
 }

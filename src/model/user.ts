@@ -8,5 +8,9 @@ export class User {
     lastName!: string;
     id_token!: string;
     email!: EmailValidator;
+    login!: string;
+    authorities!: [];
+    activated!: boolean;
+
 
 }
