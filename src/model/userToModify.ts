@@ -1,11 +1,8 @@
 import { Authority } from "src/app/config/authority.constants";
 
-export class Register {
-   /*  email!: string;
-    langKey!: "fr";
-    login!: string;
-    password!: string; */
+export class UserToModify {
 
+  id! : number;
   activated!: true;
   roleUser!: Authority;
   email!: string;

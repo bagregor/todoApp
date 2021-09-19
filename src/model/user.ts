@@ -6,7 +6,7 @@ export class User {
     password!: string;
     firstName!: string;
     lastName!: string;
-    id_token!: string;
+    id_token?: string;
     email!: EmailValidator;
     login!: string;
     authorities!: [];

@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +38,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [ErrorInterceptor, JwtInterceptor, AuthGuardService],
+  providers: [ErrorInterceptor, JwtInterceptor, AuthGuardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

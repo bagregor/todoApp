@@ -23,11 +23,13 @@ import { PagePrincipalComponent } from './components/page-principal/page-princip
 
 ]; */
  const routes: Routes = [
+  
   {
     path: '',
     component: LoginComponent
   },
   {
+    
     path: 'acceuil',
     component: PagePrincipalComponent,
     canActivate: [AuthGuardService],
