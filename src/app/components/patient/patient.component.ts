@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Patient } from 'src/model/patient';
 
 @Component({
   selector: 'app-patient',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient.component.sass']
 })
 export class PatientComponent implements OnInit {
+
+  
+  patients! : Patient[];
 
   constructor() { }
 

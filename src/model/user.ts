@@ -11,6 +11,7 @@ export class User {
     login!: string;
     authorities!: [];
     activated!: boolean;
+    numeroTelephone!: number;
 
 
 }

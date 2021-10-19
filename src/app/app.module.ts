@@ -17,6 +17,9 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 import { ProfileComponent } from './components/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPatientComponent } from './components/add-patient/add-patient.component';
+import { ConsultationComponent } from './components/consultation/consultation.component';
+import { RendezVousComponent } from './components/rendez-vous/rendez-vous.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     PagePrincipalComponent,
     PagePrincipalComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddPatientComponent,
+    ConsultationComponent,
+    RendezVousComponent
   ],
   imports: [
     BrowserModule,

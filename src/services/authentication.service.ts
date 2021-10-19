@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Accounts } from 'src/model/account';
+import { AuthenticationRequest } from 'src/model/AuthenticationRequest';
 import { User } from 'src/model/user';
 import { SERVER_API_URL } from '../app/app.constante';
 
@@ -12,22 +13,22 @@ import { SERVER_API_URL } from '../app/app.constante';
 })
 export class AuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  //private currentUserSubject: BehaviorSubject<User>;
+  //public currentUser: Observable<User>;
 
     constructor(private http: HttpClient,private router: Router) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')!));
-        this.currentUser = this.currentUserSubject.asObservable();
+        /* this.currentUserSubject = new BehaviorSubject<User>(localStorage.getItem('currentUser'));
+        this.currentUser = this.currentUserSubject.asObservable(); */
     }
    
 
-    public get currentUserValue(): User {
-        return this.currentUserSubject.value;
-    }
+    //public get currentUserValue(): User {
+      //  return this.currentUserSubject.value;
+    //}
 
-    login(username: string, password: string) {
+    login(authenticationRequest : AuthenticationRequest) {
 
-        return this.http.post<any>(SERVER_API_URL+'/authenticate', { username, password })
+        /* return this.http.post<any>(SERVER_API_URL+'/v1/user/authenticate', authenticationRequest)
             .pipe(map(user => {
                
                 // login successful if there's a jwt token in the response
@@ -38,25 +39,22 @@ export class AuthenticationService {
                 }
 
                 return user;
-            }));
+            }));   */
+            //const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+            return this.http.post(SERVER_API_URL+'/v1/user/authenticate',authenticationRequest,{ responseType: 'text'});
+
+        //return this.http.post<any>(SERVER_API_URL+'/v1/user/authenticate', authenticationRequest);
     }
 
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null!);
-        this.router.navigateByUrl('/login');
+        localStorage.clear();
+       // this.currentUserSubject.next(null!);
+        this.router.navigateByUrl('');  
 
     } 
 
 
-    getCurrentUserConnected() {
-        var header = {
-            headers: new HttpHeaders()
-              .set('Authorization',  `Bearer ${localStorage.getItem('currentUser')?.slice(1, -1)}`)
-          }
-        
-        return this.http.get<Accounts>(SERVER_API_URL+ '/account', header);
-        
-    }
+    
 }

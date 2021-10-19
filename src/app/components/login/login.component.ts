@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuardService } from 'src/app/_guards/auth.guard';
+import { AuthenticationRequest } from 'src/model/AuthenticationRequest';
 import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
@@ -15,23 +16,22 @@ export class LoginComponent implements OnInit {
     returnUrl: "/acceil" | undefined;
     errorString: string | undefined;
 
+    authenticationRequest! : AuthenticationRequest;
+
     constructor(
       private formBuilder: FormBuilder,
        private router: Router,
        private authenticationService : AuthenticationService
     ) {
-      if (this.authenticationService.currentUserValue) { 
-        this.router.navigate(['/']);
-      }
+      //if (this.authenticationService.currentUserValue) { 
+     //   this.router.navigate(['/']);
+     // }
     }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]});
-
-      /* this.route.queryParams
-      .subscribe(params => this.return = params['return'] || '/forums'); */
   }
 
   get f() { return this.loginForm.controls; }
@@ -42,14 +42,26 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid) {
             console.log('Veuillez saisir des infos valides!');
         } else {
+          this.authenticationRequest = this.loginForm.value;
+          console.log("Im here 2")
+          localStorage.setItem("email", this.loginForm.value.username)
 
-          this.authenticationService.login(this.f.username.value, this.f.password.value)
-              .pipe()
+          this.authenticationService.login(this.authenticationRequest)
+          .subscribe((data)=>{
+            console.log("hhhhhhhh "+data);
+            if (data) {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', data);
+              this.router.navigateByUrl('/acceuil');
+              window.location.reload();
+          }
+          })  
+              /* .pipe()
               .subscribe(
                   () => {
   
                       this.router.navigateByUrl('/acceuil');
-                      //window.location.reload();
+                      window.location.reload();
                   },
                   error => {
                    
@@ -60,7 +72,7 @@ export class LoginComponent implements OnInit {
                       console.error('Les identifications sont erronées !');
                     }
   
-            });
+            }); */
         
         }
     }

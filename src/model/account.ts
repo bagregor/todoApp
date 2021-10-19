@@ -1,14 +1,11 @@
 export class Accounts {
     constructor(
-      public id: number,
-      public activated: boolean,
-      public authorities: string[],
+      public uid: number,
+      public authorities: string,
       public email: string,
       public firstName: string,
-      public langKey: string,
       public lastName: string,
-      public login: string,
-      public imageUrl: string
+      public numerotelephone: string
     ) {}
   }
   

@@ -8,6 +8,8 @@ import { PatientComponent } from './components/patient/patient.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { SecretaireComponent } from './components/secretaire/secretaire.component';
 import { PagePrincipalComponent } from './components/page-principal/page-principal.component';
+import { ConsultationComponent } from './components/consultation/consultation.component';
+import { RendezVousComponent } from './components/rendez-vous/rendez-vous.component';
 
 /* const routes: Routes = [
   { path: 'medecin', component : MedecinComponent , canActivate: [AuthGuardService] },
@@ -32,27 +34,42 @@ import { PagePrincipalComponent } from './components/page-principal/page-princip
     
     path: 'acceuil',
     component: PagePrincipalComponent,
-    canActivate: [AuthGuardService],
+    //canActivate: [AuthGuardService],
     children: [
       {
         path: 'medecin',
         component: MedecinComponent,
-        canActivate: [AuthGuardService],
+      //  canActivate: [AuthGuardService],
       },
       {
         path: 'patient',
         component: PatientComponent,
-        canActivate: [AuthGuardService],
+       // canActivate: [AuthGuardService],
       },
       {
         path: 'secretaire',
         component: SecretaireComponent,
-        canActivate: [AuthGuardService]
+       // canActivate: [AuthGuardService]
       },
       {
         path: 'utilisateurs',
         component: RegisterUserComponent,
-        canActivate: [AuthGuardService]
+       // canActivate: [AuthGuardService]
+      },
+      {
+        path: 'consultation',
+        component: ConsultationComponent,
+       // canActivate: [AuthGuardService]
+      },
+      {
+        path: 'rendezVous',
+        component: RendezVousComponent,
+        //canActivate: [AuthGuardService]
+      },
+      {
+        path: 'patient',
+        component: PatientComponent,
+       // canActivate: [AuthGuardService]
       }
     ]
   }

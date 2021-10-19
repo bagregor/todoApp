@@ -25,6 +25,9 @@ export class RegisterUserComponent implements OnInit {
 
   modalUpdateUser : Modal | undefined;
 
+  modalDeleteUser : Modal | undefined;
+
+  loginUserForDelete!: String;
 
   authoritiesEnum = Authority;
 
@@ -80,7 +83,6 @@ export class RegisterUserComponent implements OnInit {
   }
 
   openDialogForUpdate(user : User){
-    console.log("le us "+JSON.stringify(user))
     this.userToModify = user;
 
     this.modifUserForm = this.formBuilder.group({
@@ -98,6 +100,18 @@ export class RegisterUserComponent implements OnInit {
     })
 
     this.modalUpdateUser?.show();
+  }
+
+  openDialogForDeleteUser(user : User){
+
+    this.loginUserForDelete = user?.login;
+    console.log("le user to delete est le "+this.loginUserForDelete)
+
+    this.modalDeleteUser = new bootstrap.Modal(document.getElementById('modalDeleteUser')!, {
+      keyboard : false
+    })
+
+    this.modalDeleteUser?.show();
   }
 
   get f() { return this.signUpForm.controls; }
@@ -119,7 +133,7 @@ export class RegisterUserComponent implements OnInit {
                   this.modalAddUser?.hide();
                     
                 },
-                error => {
+                _error => {
                  
                   this.isError = true;
                   setTimeout( () => {
@@ -162,4 +176,33 @@ export class RegisterUserComponent implements OnInit {
           }); 
     }
 
+    deleteCompte(login : String){
+
+      this.userService.delete(login)
+      .pipe()
+      .subscribe(
+          () => {
+            this.isRegister = true;
+            setTimeout( () => {
+              console.log('hide');
+              this.isRegister = false; // here... this has different context
+            }, 2000);
+
+            this.loadAllUsers();
+            this.modalDeleteUser?.hide();
+              
+          },
+          error => {
+           
+            this.isError = true;
+            setTimeout( () => {
+              console.log('hide');
+              this.isError = false; // here... this has different context
+            }, 2000);
+
+            this.loadAllUsers();
+            this.modalDeleteUser?.hide()
+          }); 
+    }
+    
 }
