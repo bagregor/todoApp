@@ -47,7 +47,6 @@ export class UsersService {
   getCurrentUserConnected(email: String)  {
     return this.http.get<Accounts>(SERVER_API_URL+'/v1/user/currentUser'+email, {headers: this.headers}).pipe(
         map(account => {
-          console.log("mes accounts "+JSON.stringify(account))
           return account;
       }),
         tap(

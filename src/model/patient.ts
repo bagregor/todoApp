@@ -10,4 +10,5 @@ export class Patient {
     codeAssurance!: String;
     nomAndPrenomICE!: String;
     numeroTelephoneICE!: number;
+    externalid!: String;
 }
