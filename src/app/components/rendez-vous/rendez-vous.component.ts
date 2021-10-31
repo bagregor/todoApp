@@ -38,6 +38,8 @@ export class RendezVousComponent implements OnInit {
 
   patients!: Patient[];
 
+  uidRV!: String;
+
   addRendezVousForm = this.formBuilder.group({
     dateRDV:[''],
     uidPatient: [''],
@@ -95,11 +97,16 @@ export class RendezVousComponent implements OnInit {
 
   openDialogForDeleteRendezVous(rendezVous: RendezVous){
 
+    this.uidRV = rendezVous?.uidRendezVous;
+    this.modalDeleteRendezVous = new bootstrap.Modal(document.getElementById('modalDeleteRendezVous')!, {
+      keyboard : false
+    })
+
+    this.modalDeleteRendezVous?.show();
+
   }
 
   openDialogForUpdateRendezVous(rendezVous: RendezVous){
-
-    console.log("Dans le update Rendez Vous "+JSON.stringify(rendezVous))
     this.rendez_Vous = rendezVous;
     this.loadAllMedecin();
     this.loadAllPatient();
@@ -150,8 +157,6 @@ export class RendezVousComponent implements OnInit {
   }
 
   modifRendezVous(){
-    console.log("le rendez to update "+JSON.stringify(this.modifRendezVousForm.value))
-
 
     this.rendez_Vous = this.modifRendezVousForm.value;
 
@@ -179,5 +184,34 @@ export class RendezVousComponent implements OnInit {
             this.loadAllRendezVous();
             this.modalUpdateRendezVous?.hide()
       }); 
+  }
+
+  deleteRendezVous(uidRendezVous: String){
+
+    this.rendezVouService.deleteRendezVous(uidRendezVous)
+    .pipe()
+    .subscribe(
+        () => {
+          this.isDelete = true;
+          setTimeout( () => {
+            console.log('hide');
+            this.isDelete = false; // here... this has different context
+          }, 2000);
+
+          this.loadAllRendezVous();
+          this.modalDeleteRendezVous?.hide();
+            
+        },
+        error => {
+         
+          this.isError = true;
+          setTimeout( () => {
+            console.log('hide');
+            this.isError = false; // here... this has different context
+          }, 2000);
+
+          this.loadAllRendezVous();
+          this.modalDeleteRendezVous?.hide()
+        }); 
   }
 }

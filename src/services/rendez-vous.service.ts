@@ -33,7 +33,7 @@ export class RendezVousService {
   }
 
   deleteRendezVous(uidRendezVous: String){
-    return this.http.delete(SERVER_API_URL+'/v1/deleteRendezVous/'+ uidRendezVous);
+    return this.http.delete(SERVER_API_URL+'/v1/deleteRV/'+ uidRendezVous);
   }
 
 }
