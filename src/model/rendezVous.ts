@@ -1,6 +1,11 @@
 export class RendezVous {
    
-    dateRendezVous! : Date;
-    
+    dateRDV! : Date;
+    uidPatient! : String;
+    uidMedecin! : String;
+    uidRendezVous! : String;
+    infosPatient! : String;
+    infosMedecin! : String;
+    heureRendezVous!: String;
 
 }

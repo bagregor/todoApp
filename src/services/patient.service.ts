@@ -15,7 +15,6 @@ export class PatientService {
   constructor(private http : HttpClient) { 
     const token = localStorage.getItem('currentUser');
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    console.log("le token jwt "+this.headers)
   }
 
   getAllPatients(): Observable<Patient[]> {

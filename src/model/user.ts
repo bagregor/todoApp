@@ -12,6 +12,7 @@ export class User {
     authorities!: [];
     activated!: boolean;
     numeroTelephone!: number;
+    uidUser!: string;
 
 
 }
