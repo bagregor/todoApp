@@ -64,13 +64,21 @@ export class RendezVousComponent implements OnInit {
       });
   }
 
+  loadAllRendezVousForMedecin(){
+    
+    this.rendezVouService.getAllRendezVousForMedecin().pipe().subscribe(
+      rendezVous => {
+        return this.rendezVous = rendezVous;
+      });
+  }
+
   getEditFormData() {
     return this.modifRendezVousForm?.controls;
   }
 
   loadAllMedecin(){
 
-    this.userService.getAllUsers().pipe().subscribe(
+    this.userService.getAllMedecins().pipe().subscribe(
       users => {
         return this.users = users;
       });

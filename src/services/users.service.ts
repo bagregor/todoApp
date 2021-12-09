@@ -17,12 +17,15 @@ export class UsersService {
 
   constructor(private http : HttpClient) { 
     const token = localStorage.getItem('currentUser');
+    //this.user = token;
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    console.log("le token jwt "+this.headers)
+    //console.log("mon headers "+JSON.stringify(this.headers))
+    //console.log("mon token "+token.accessToken)
+
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(SERVER_API_URL+'/v1/user/users').pipe(
+    return this.http.get<User[]>(SERVER_API_URL+'/auth/users', {headers: this.headers}).pipe(
       map(users => {
         return users;
       }),
@@ -30,18 +33,44 @@ export class UsersService {
         _ => _,
         _ => _
       ));
-  }
+  } 
+
+
+  getAllInfosUser(): Observable<User> {
+    return this.http.get<User>(SERVER_API_URL+'/auth/infos', {headers: this.headers}).pipe(
+      map(users => {
+        return users;
+      }),
+      tap(
+        _ => _,
+        _ => _
+      ));
+  } 
+
+
+
+  getAllMedecins(): Observable<User[]> {
+    return this.http.get<User[]>(SERVER_API_URL+'/auth/medecins', {headers: this.headers}).pipe(
+      map(users => {
+        return users;
+      }),
+      tap(
+        _ => _,
+        _ => _
+      ));
+  } 
+
 
   register(register: Register) {
-    return this.http.post(SERVER_API_URL+'/admin/users', register, {headers: this.headers});
+    return this.http.post(SERVER_API_URL+'/auth/signup', register, {headers: this.headers});
   }
 
   update(user: UserToModify) {
-      return this.http.put(SERVER_API_URL+'/admin/users/', user, {headers: this.headers});
+      return this.http.put(SERVER_API_URL+'/auth/users/', user, {headers: this.headers});
   }
 
-  delete(login : String) {
-      return this.http.delete(SERVER_API_URL+'/admin/users/'+login, {headers: this.headers});
+  delete(uidUser : String) {
+      return this.http.delete(SERVER_API_URL+'/auth/users/'+uidUser, {headers: this.headers});
   }
 
   getCurrentUserConnected(email: String)  {

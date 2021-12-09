@@ -21,6 +21,18 @@ export class RendezVousService {
         _ => _,
         _ => _
       ));
+  } 
+
+
+  getAllRendezVousForMedecin(): Observable<RendezVous[]> {
+    return this.http.get<RendezVous[]>(SERVER_API_URL+'/v1/rendezVousForMedecin').pipe(
+      map(rendezVous => {
+        return rendezVous;
+      }),
+      tap(
+        _ => _,
+        _ => _
+      ));
   }
 
 

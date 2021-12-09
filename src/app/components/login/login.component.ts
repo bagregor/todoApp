@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthGuardService } from 'src/app/_guards/auth.guard';
 import { AuthenticationRequest } from 'src/model/AuthenticationRequest';
+import { User } from 'src/model/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
     errorString: string | undefined;
 
     authenticationRequest! : AuthenticationRequest;
+    user!: User;
 
     constructor(
       private formBuilder: FormBuilder,
@@ -43,36 +45,17 @@ export class LoginComponent implements OnInit {
             console.log('Veuillez saisir des infos valides!');
         } else {
           this.authenticationRequest = this.loginForm.value;
-          console.log("Im here 2")
-          localStorage.setItem("email", this.loginForm.value.username)
-
+        
           this.authenticationService.login(this.authenticationRequest)
           .subscribe((data)=>{
-            console.log("hhhhhhhh "+data);
+            console.log("data to store "+JSON.stringify(data));
             if (data) {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', data);
               this.router.navigateByUrl('/acceuil');
-              window.location.reload();
+              //window.location.reload();
           }
           })  
-              /* .pipe()
-              .subscribe(
-                  () => {
-  
-                      this.router.navigateByUrl('/acceuil');
-                      window.location.reload();
-                  },
-                  error => {
-                   
-                    this.errorString = JSON.stringify(error.status);
-                   
-                    if(!(this.errorString.localeCompare(JSON.stringify(error.status))) == true){
-                  
-                      console.error('Les identifications sont erronées !');
-                    }
-  
-            }); */
         
         }
     }

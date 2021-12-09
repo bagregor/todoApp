@@ -2,12 +2,12 @@ import { Authority } from "src/app/config/authority.constants";
 
 export class UserToModify {
 
-  id! : number;
+  uidUser! : number;
   activated!: true;
   roleUser!: Authority;
   email!: string;
   firstName!: string;
-  langKey!: "fr";
+  //langKey!: "fr";
   lastName!: string;
   login!: string;
     

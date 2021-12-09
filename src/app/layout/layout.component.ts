@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Accounts } from 'src/model/account';
+import { Component, Input, OnInit } from '@angular/core';
+//import { Accounts } from 'src/model/account';
+import { User } from 'src/model/user';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { UsersService } from 'src/services/users.service';
 
@@ -10,15 +11,14 @@ import { UsersService } from 'src/services/users.service';
 })
 export class LayoutComponent implements OnInit {
 
-  accounts! : Accounts;
-  email= localStorage.getItem("email");
+  userInfos! : User;
 
-  authorities!: String;
+  authorities!: string;
 
   constructor(private authenticationService : AuthenticationService, private userService : UsersService) { }
 
   ngOnInit(): void {
-    this.getInfoAccount(localStorage.getItem("email")!);
+    this.getInfoAccount();
 
   }
 
@@ -27,13 +27,14 @@ export class LayoutComponent implements OnInit {
   }
 
 
-  getInfoAccount(email: String){
+  getInfoAccount(){
 
-    console.log("le email "+localStorage.getItem("email")!)
-    this.userService.getCurrentUserConnected(email).pipe().subscribe( account => {
-           this.accounts = account;
-           this.authorities = account.authorities;
-           return this.accounts;
+    this.userService.getAllInfosUser().pipe().subscribe( user => {
+           this.userInfos = user;
+           this.authorities = user.roles;
+           localStorage.setItem('role_user', this.authorities);
+           return this.userInfos;
       });
   }
 }
+

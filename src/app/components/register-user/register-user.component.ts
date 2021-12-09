@@ -19,8 +19,7 @@ export class RegisterUserComponent implements OnInit {
   users! : User[];
 
   userToModify! : User;
-
-
+  
   modalAddUser : Modal | undefined;
 
   modalUpdateUser : Modal | undefined;
@@ -39,15 +38,16 @@ export class RegisterUserComponent implements OnInit {
 
   signUpForm = this.formBuilder.group({
     email: ['', Validators.required, Validators.email],
-    login: [''],
+    username: [''],
+    role: [''],
     password: [''],
-    firstName: [''],
     lastName: [''],
-    roleUser: [''],
-    langKey:  ['fr'],
+    numeroTelephone: [''],
+    firstName:  [''],
 
   });
-
+  
+  roleuser = new Array();
   modifUserForm! : FormGroup;
   
   register! : Register;
@@ -86,7 +86,7 @@ export class RegisterUserComponent implements OnInit {
     this.userToModify = user;
 
     this.modifUserForm = this.formBuilder.group({
-      id: [this.userToModify?.id],
+      uidUser: [this.userToModify?.uidUser],
       email: [this.userToModify?.email ],
       login: [this.userToModify?.login],
       firstName: [this.userToModify?.firstName],
@@ -104,8 +104,8 @@ export class RegisterUserComponent implements OnInit {
 
   openDialogForDeleteUser(user : User){
 
-    this.loginUserForDelete = user?.login;
-    console.log("le user to delete est le "+this.loginUserForDelete)
+    this.loginUserForDelete = user?.uidUser;
+    //console.log("le user to delete est le "+this.loginUserForDelete)
 
     this.modalDeleteUser = new bootstrap.Modal(document.getElementById('modalDeleteUser')!, {
       keyboard : false
@@ -116,9 +116,11 @@ export class RegisterUserComponent implements OnInit {
 
   get f() { return this.signUpForm.controls; }
 
-  saveUser(){
+  saveUser(){    
 
     this.register = this.signUpForm.value;
+    //this.roleuser.push(this.signUpForm.value.role);
+    //console.log("le register list "+this.register)
     this.userService.register(this.register)
             .pipe()
             .subscribe(
@@ -149,6 +151,8 @@ export class RegisterUserComponent implements OnInit {
     modifyUser(){
       this.user = this.modifUserForm?.value;
 
+      console.log("Le user to modify "+JSON.stringify(this.user))
+
       this.userService.update(this.user)
       .pipe()
       .subscribe(
@@ -176,9 +180,9 @@ export class RegisterUserComponent implements OnInit {
           }); 
     }
 
-    deleteCompte(login : String){
+    deleteCompte(uidUser : String){
 
-      this.userService.delete(login)
+      this.userService.delete(uidUser)
       .pipe()
       .subscribe(
           () => {

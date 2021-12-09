@@ -36,33 +36,37 @@ export class ConsultationComponent implements OnInit {
 
   updateConsultationForm!: FormGroup;
 
-  uidMedecin = "1q2g-6nfm-r3t1-3pmu-729s-7l6i-k63d-8hur";
+  //uidUser!: String;
 
   addConsultationForm = this.formBuilder.group({
     diagnosticConsultation:[''],
     typeConsultation:[''],
     uidPatient: [''],
-    uidMedecin: this.uidMedecin,
+    uidMedecin: [''],
   });
 
   uidConsultation!: String;
 
   constructor(private consultationService : ConsultationService, private formBuilder: FormBuilder,
-      private patientService: PatientService) { }
+      private patientService: PatientService) { 
+
+        //this.uidUser = localStorage.getItem('uidUser') || '';
+
+      }
 
   ngOnInit(): void {
     this.loadAllConsulationsForMedecin();
   }
 
   loadAllConsulationsForMedecin(){
-    this.consultationService.getConsultationByMedecin(this.uidMedecin).pipe().subscribe(
+    this.consultationService.getConsultationByMedecin().pipe().subscribe(
       consultations => {
         return this.consultations = consultations;
       });
   }
 
-  loadAllPatients(){
-    this.patientService.getAllPatients().pipe().subscribe(
+  loadAllPatientsForMedecin(){
+    this.patientService.getPatientForMedecin().pipe().subscribe(
       patients => {
         return this.patients = patients;
       });
@@ -70,7 +74,7 @@ export class ConsultationComponent implements OnInit {
 
 
   openDialogForAddConsulation(){
-    this.loadAllPatients();
+    this.loadAllPatientsForMedecin();
     this.modalAddConsultation = new bootstrap.Modal(document.getElementById('modalAddConsultation')!, {
       keyboard : false
     })
@@ -86,14 +90,14 @@ export class ConsultationComponent implements OnInit {
 
   openDialogForUpdateConsulation(consulation : Consultation){
 
-    this.loadAllPatients();
+    this.loadAllPatientsForMedecin();
     this.consultation = consulation;
 
     this.updateConsultationForm = this.formBuilder.group({
       diagnosticConsultation: this.consultation?.diagnosticConsultation,
       typeConsultation: this.consultation?.typeConsultation,
       uidPatient: this.consultation?.uidPatient,
-      uidMedecin: this.consultation?.uidMedecin,
+      //uidMedecin: this.consultation?.uidMedecin,
       infosPatient: this.consultation?.infosPatient,
       uidConsultation: this.consultation?.uidConsultation,
       dateConsultation: this.consultation?.dateConsultation

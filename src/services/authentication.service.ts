@@ -41,7 +41,7 @@ export class AuthenticationService {
                 return user;
             }));   */
             //const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-            return this.http.post(SERVER_API_URL+'/v1/user/authenticate',authenticationRequest,{ responseType: 'text'});
+            return this.http.post(SERVER_API_URL+'/auth/signin',authenticationRequest,{ responseType: 'text'});
 
         //return this.http.post<any>(SERVER_API_URL+'/v1/user/authenticate', authenticationRequest);
     }

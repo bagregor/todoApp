@@ -6,11 +6,12 @@ export class User {
     password!: string;
     firstName!: string;
     lastName!: string;
-    id_token?: string;
+    //id_token?: string;
     email!: EmailValidator;
     login!: string;
     authorities!: [];
-    activated!: boolean;
+    roles!: string;
+    //activated!: boolean;
     numeroTelephone!: number;
     uidUser!: string;
 

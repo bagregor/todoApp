@@ -49,10 +49,23 @@ export class PatientComponent implements OnInit {
 
   externalid! : String ;
 
-  constructor(private patientService: PatientService,  private formBuilder: FormBuilder) { }
+  role_user!: string;
+
+  //uidUser!: String;
+
+  constructor(private patientService: PatientService,  private formBuilder: FormBuilder) {
+     this.role_user = localStorage.getItem('role_user') || '';
+     //this.uidUser = localStorage.getItem('uidUser') || '';
+     //console.log("le role est le "+this.role_user)
+   }
 
   ngOnInit(): void {
-    this.loadAllPatients();
+    if(this.role_user === 'ROLE_MEDECIN') {
+      this.loadAllPatientsForMedecin();
+    } else {
+      this.loadAllPatients();
+    }
+    
   }
 
 
@@ -63,6 +76,15 @@ export class PatientComponent implements OnInit {
              return this.patients;
         });
   }
+
+  loadAllPatientsForMedecin(){
+    this.patientService.getPatientForMedecin().pipe().subscribe(
+        patients => {
+             this.patients = patients;
+             return this.patients;
+        });
+  }
+
 
   getEditFormData() {
     return this.modifPatientForm?.controls;

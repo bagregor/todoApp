@@ -34,42 +34,42 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous.compon
     
     path: 'acceuil',
     component: PagePrincipalComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'medecin',
         component: MedecinComponent,
-      //  canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
       },
       {
         path: 'patient',
         component: PatientComponent,
-       // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
       },
       {
         path: 'secretaire',
         component: SecretaireComponent,
-       // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'utilisateurs',
         component: RegisterUserComponent,
-       // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'consultation',
         component: ConsultationComponent,
-       // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'rendezVous',
         component: RendezVousComponent,
-        //canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'patient',
         component: PatientComponent,
-       // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       }
     ]
   }

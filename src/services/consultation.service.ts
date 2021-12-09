@@ -34,8 +34,8 @@ export class ConsultationService {
       ));
   } 
 
-  getConsultationByMedecin(uidMedecin: String): Observable<Consultation[]> {
-    return this.http.get<Consultation[]>(SERVER_API_URL+'/v1/getConsultationByMedecin/'+ uidMedecin).pipe(
+  getConsultationByMedecin(): Observable<Consultation[]> {
+    return this.http.get<Consultation[]>(SERVER_API_URL+'/v1/getConsultationByMedecin/').pipe(
       map(consultation  => {
         return consultation;
       }),
