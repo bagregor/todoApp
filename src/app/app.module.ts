@@ -19,6 +19,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous.component';
+import { HospitalisationComponent } from './components/hospitalisation/hospitalisation.component';
+import { LitComponent } from './components/lit/lit.component';
+import { ChambreComponent } from './components/chambre/chambre.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous.compon
     PagePrincipalComponent,
     HeaderComponent,
     ConsultationComponent,
-    RendezVousComponent
+    RendezVousComponent,
+    HospitalisationComponent,
+    LitComponent,
+    ChambreComponent
   ],
   imports: [
     BrowserModule,

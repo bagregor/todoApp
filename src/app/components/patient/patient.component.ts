@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as bootstrap from 'bootstrap';
 import { Modal } from 'bootstrap';
+import Hospitalisation from 'src/model/hospitalisation';
 import { Patient } from 'src/model/patient';
+import { HospitalisationService } from 'src/services/hospitalisation.service';
 import { PatientService } from 'src/services/patient.service';
 
 @Component({
@@ -21,6 +23,9 @@ export class PatientComponent implements OnInit {
   isError = false;
 
   patients! : Patient[];
+
+  hospitalisations! : Hospitalisation[];
+
 
   patient! : Patient;
 
@@ -51,9 +56,10 @@ export class PatientComponent implements OnInit {
 
   role_user!: string;
 
-  //uidUser!: String;
+  uidlit = "8lbp-pp7b-c1la-ntld-m7t1-maog-da64-jk8p";
 
-  constructor(private patientService: PatientService,  private formBuilder: FormBuilder) {
+  constructor(private patientService: PatientService,  private formBuilder: FormBuilder,
+              private hospitalisatioService : HospitalisationService) {
      this.role_user = localStorage.getItem('role_user') || '';
      //this.uidUser = localStorage.getItem('uidUser') || '';
      //console.log("le role est le "+this.role_user)
@@ -65,9 +71,19 @@ export class PatientComponent implements OnInit {
     } else {
       this.loadAllPatients();
     }
+
+    this.getHospitalisationByPatient();
     
   }
 
+  getHospitalisationByPatient(){
+    console.log("Mes hospitalisations "+this.uidlit)
+    this.hospitalisatioService.getHospitalisationByPatient(this.uidlit).pipe().subscribe(
+      hospitalisations => {
+           this.hospitalisations = hospitalisations;
+           return this.hospitalisations;
+      });
+  }
 
   loadAllPatients(){
     this.patientService.getAllPatients().pipe().subscribe(
