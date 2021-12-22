@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap,map } from 'rxjs/operators';
@@ -10,7 +10,14 @@ import Hospitalisation from 'src/model/hospitalisation';
 })
 export class HospitalisationService {
 
-  constructor(private http: HttpClient) { }
+  headers: HttpHeaders;
+
+  constructor(private http : HttpClient) { 
+    const token = localStorage.getItem('currentUser');
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    
+
+  }
 
   getAllhospitalisations(): Observable<Hospitalisation[]> {
     return this.http.get<Hospitalisation[]>(SERVER_API_URL+'/v1/hospitalisations').pipe(
@@ -23,6 +30,17 @@ export class HospitalisationService {
       ));
   } 
 
+  getAllHospitalisaForMedecin(): Observable<Hospitalisation[]> {
+    return this.http.get<Hospitalisation[]>(SERVER_API_URL+'/v1/hospitalisationsForMedecin').pipe(
+      map(hospitalisations => {
+        return hospitalisations;
+      }),
+      tap(
+        _ => _,
+        _ => _
+      ));
+  }
+
   getHospitalisationByPatient(uidPatient: String): Observable<Hospitalisation[]> {
     return this.http.get<Hospitalisation[]>(SERVER_API_URL+`/v1/hospitalisationsForPatient/${uidPatient}`).pipe(
       map(hospitalisation  => {
@@ -33,5 +51,9 @@ export class HospitalisationService {
         _ => _
       ));
   } 
+
+  addHospitalisation(hospitalisation: Hospitalisation){
+    return this.http.post(SERVER_API_URL+'/v1/hospitalisations', hospitalisation,{headers: this.headers});
+}
 
 }

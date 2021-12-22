@@ -56,13 +56,12 @@ export class PatientComponent implements OnInit {
 
   role_user!: string;
 
-  uidlit = "8lbp-pp7b-c1la-ntld-m7t1-maog-da64-jk8p";
+  uidlit = "9ukq-3f95-27vm-o9du-dhrc-isn1-ae2d-edfn"; // remove it after implementaion of list, create and update
 
   constructor(private patientService: PatientService,  private formBuilder: FormBuilder,
               private hospitalisatioService : HospitalisationService) {
      this.role_user = localStorage.getItem('role_user') || '';
-     //this.uidUser = localStorage.getItem('uidUser') || '';
-     //console.log("le role est le "+this.role_user)
+
    }
 
   ngOnInit(): void {
@@ -77,7 +76,7 @@ export class PatientComponent implements OnInit {
   }
 
   getHospitalisationByPatient(){
-    console.log("Mes hospitalisations "+this.uidlit)
+    //console.log("Mes hospitalisations "+this.uidlit)
     this.hospitalisatioService.getHospitalisationByPatient(this.uidlit).pipe().subscribe(
       hospitalisations => {
            this.hospitalisations = hospitalisations;

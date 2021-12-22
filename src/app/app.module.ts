@@ -7,7 +7,6 @@ import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import { AuthGuardService } from './_guards/auth.guard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PagePrincipalComponent } from './components/page-principal/page-principal.component';
 import { MedecinComponent } from './components/medecin/medecin.component';
@@ -22,6 +21,9 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous.compon
 import { HospitalisationComponent } from './components/hospitalisation/hospitalisation.component';
 import { LitComponent } from './components/lit/lit.component';
 import { ChambreComponent } from './components/chambre/chambre.component';
+/*import { CalendarModule , DateAdapter} from 'angular-calendar';
+import { SchedulerModule } from 'angular-calendar-scheduler';
+import * as moment from 'moment';*/
 
 
 @NgModule({
@@ -49,8 +51,9 @@ import { ChambreComponent } from './components/chambre/chambre.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    //CalendarModule.forRoot({ provide: DateAdapter, useFactory: moment}),
+    //SchedulerModule.forRoot({ locale: 'fr', headerDateFormat: 'daysRange' }),
   ],
-  //providers: [ErrorInterceptor, JwtInterceptor, AuthGuardService ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -58,3 +61,4 @@ import { ChambreComponent } from './components/chambre/chambre.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

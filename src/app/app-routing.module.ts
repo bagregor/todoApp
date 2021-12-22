@@ -10,6 +10,7 @@ import { SecretaireComponent } from './components/secretaire/secretaire.componen
 import { PagePrincipalComponent } from './components/page-principal/page-principal.component';
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous.component';
+import { HospitalisationComponent } from './components/hospitalisation/hospitalisation.component';
 
 /* const routes: Routes = [
   { path: 'medecin', component : MedecinComponent , canActivate: [AuthGuardService] },
@@ -69,6 +70,11 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous.compon
       {
         path: 'patient',
         component: PatientComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'hospitalisation',
+        component: HospitalisationComponent,
         canActivate: [AuthGuardService]
       }
     ]
