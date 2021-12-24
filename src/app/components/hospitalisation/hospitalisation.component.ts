@@ -38,6 +38,8 @@ export class HospitalisationComponent implements OnInit {
 
   modalDeleteHospitalisation : Modal | undefined;
 
+  modalRemoveHospitalisation : Modal | undefined;
+
   addHospitalisationForm = this.formBuilder.group({
     dateAdmission:[''],
     motifAdmission: [''],
@@ -95,6 +97,13 @@ export class HospitalisationComponent implements OnInit {
   }
 
   openDialogForDeleteHospitalisation(hospitalisations: Hospitalisation) {
+    this.hospitalisation = hospitalisations;
+
+    this.modalRemoveHospitalisation = new bootstrap.Modal(document.getElementById("modalRemoveHospitalisation")!, {
+      keyboard : false
+    })
+
+    this.modalRemoveHospitalisation?.show();
 
   }
 
@@ -125,5 +134,9 @@ export class HospitalisationComponent implements OnInit {
         this.modalAddHospitalisation?.hide();
       }
     )
+  }
+
+  removeHospitalisation(hospitalisation: Hospitalisation){
+    console.log("le removeHospitalisation "+JSON.stringify(this.hospitalisation))
   }
 }

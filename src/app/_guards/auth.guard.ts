@@ -9,7 +9,7 @@ export class AuthGuardService implements CanActivate {
         private authenticationService: AuthenticationService
     ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    /* canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         //const currentUser = this.authenticationService.currentUserValue;
         const currentUser = localStorage.getItem("currentUser");
 
@@ -21,5 +21,13 @@ export class AuthGuardService implements CanActivate {
         // not logged in so redirect to login page with the return url
         this.router.navigate(['/'], { queryParams: { returnUrl: state.url } });
         return false;
-    }
+    } */
+
+    canActivate(): boolean {
+        if (!this.authenticationService.isAuthenticated()) {
+          this.router.navigate(['']);
+          return false;
+        }
+        return true;
+      }
 }

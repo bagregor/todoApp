@@ -86,10 +86,11 @@
                 
                 </td>
 
+                
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <i class="fas fa-trash" (click)="openDialogForDeleteHospitalisation(hospitalisations)" >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                   </i>
                 
@@ -198,7 +199,41 @@
 <!-- End modal for add patient -->
 
 
+<!-- Modal for remove hospitalisation -->
 
+<div class="modal fade tabindex=-1 fixed top-0 left-0 w-full h-full outline-none fade" #modalRemoveHospitalisation id="modalRemoveHospitalisation" tabindex="-1" role="dialog">
+  <div class="modal-dialog relative w-auto pointer-events-none max-w-lg my-8 mx-auto px-8 sm:px-0" role="document">
+    
+    <div class="relative flex flex-col w-full pointer-events-auto bg-white border border-gray-300 rounded-lg">
+      <div class="flex flex-col p-8 bg-white shadow-md hover:shodow-lg rounded-2xl">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg"
+              class="w-16 h-16 rounded-2xl p-3 border border-blue-100 text-blue-400 bg-blue-50" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div class="flex flex-col ml-4">
+              <div class="font-medium leading-none">Voulez-vous faire sortir le patient de la salle d'hospitalisation?</div>
+            </div>
+
+            <!-- <div class="flex items-center justify-end p-4 border-t border-gray-300"> -->
+              <button type="button" class="inline-block font-normal text-center px-3 py-2 leading-normal 
+                    text-base rounded cursor-pointer text-white bg-gray-600 mr-2" data-dismiss="modal">Non</button>
+              <button type="submit" class="inline-block font-normal text-center px-3 py-2 
+                  leading-normal text-base rounded cursor-pointer text-white bg-green-600"
+                  (click)="removeHospitalisation(hospitalisation)" >Oui</button>
+         <!--  </div> -->
+        </div>
+          
+      </div>
+    </div> 
+    
+  </div>
+</div>
+
+<!-- End modal for remove hospitalisation -->
 
 <div *ngIf="isRegister" >
 

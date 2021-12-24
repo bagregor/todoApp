@@ -56,4 +56,11 @@ export class HospitalisationService {
     return this.http.post(SERVER_API_URL+'/v1/hospitalisations', hospitalisation,{headers: this.headers});
 }
 
+
+//Cette fonction ne supprime pas,
+//elle permet de faire sortir un patient hospitaliser
+removeHospitalisation(hospitalisation: Hospitalisation){
+  return this.http.put(SERVER_API_URL+'/v1/removeHospitalisation', hospitalisation,{headers: this.headers});
+}
+
 }

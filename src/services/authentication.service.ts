@@ -55,6 +55,11 @@ export class AuthenticationService {
 
     } 
 
+    isAuthenticated(): boolean {
+        const user = localStorage.getItem('currentUser');
+        return (user !== null) ? true : false;
+      }
+
 
     
 }
