@@ -43,7 +43,7 @@ export class HospitalisationComponent implements OnInit {
   addHospitalisationForm = this.formBuilder.group({
     dateAdmission:[''],
     motifAdmission: [''],
-    dateSortie: ['', Validators.required, Validators.email],
+    //dateSortie: ['', Validators.required, Validators.email],
     motifSortie: [''],
     infosAccompagnant: [''],
     dateDeces: [''],
@@ -52,6 +52,15 @@ export class HospitalisationComponent implements OnInit {
     numeroTelephoneICE: [''],
     uidPatient: [''],
   });
+
+  isDeath = false;
+
+  /* removeHospitalisationForm = this.formBuilder.group({
+  
+    motifSortie: ['', Validators.required],
+    dateDeces: [''],
+    causeDeces:  [''],
+  }); */
 
   constructor(private hospitalisationService: HospitalisationService, private formBuilder: FormBuilder,
               private litService :  LitService, private patientService: PatientService) { }
@@ -137,6 +146,28 @@ export class HospitalisationComponent implements OnInit {
   }
 
   removeHospitalisation(hospitalisation: Hospitalisation){
-    console.log("le removeHospitalisation "+JSON.stringify(this.hospitalisation))
+    //console.log("le removeHospitalisation sans motif de sortie "+JSON.stringify(this.hospitalisation))
+    this.hospitalisation.motifSortie = this.addHospitalisationForm.value.motifSortie;
+    //console.log("le removeHospitalisation avec motif de sortie "+JSON.stringify(this.hospitalisation))
+    this.hospitalisationService.removeHospitalisation(this.hospitalisation).pipe().subscribe(
+      ()=> {
+        this.isRegister = true;
+        setTimeout( ()=> {
+          this.isRegister = false;
+        }, 2000);
+
+        this.loadAllHospitalisationForMedecin();
+        this.modalRemoveHospitalisation?.hide();
+      },
+      _error => {
+        this.isError = true;
+        setTimeout( ()=> {
+          this.isError = false;
+        }, 2000);
+        this.loadAllHospitalisationForMedecin();
+        this.modalRemoveHospitalisation?.hide();
+      }
+    )
+
   }
 }
