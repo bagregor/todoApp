@@ -21,6 +21,7 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous.compon
 import { HospitalisationComponent } from './components/hospitalisation/hospitalisation.component';
 import { LitComponent } from './components/lit/lit.component';
 import { ChambreComponent } from './components/chambre/chambre.component';
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory  } from '@stomp/ng2-stompjs';
 /*import { CalendarModule , DateAdapter} from 'angular-calendar';
 import { SchedulerModule } from 'angular-calendar-scheduler';
 import * as moment from 'moment';*/
@@ -55,6 +56,7 @@ import * as moment from 'moment';*/
     //SchedulerModule.forRoot({ locale: 'fr', headerDateFormat: 'daysRange' }),
   ],
   providers: [
+   // RxStompService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
