@@ -7,7 +7,8 @@ import { UsersService } from 'src/services/users.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.sass']
+  styleUrls: ['../../../src/assets/dist/css/app.css']
+  
 })
 export class LayoutComponent implements OnInit {
 
@@ -26,7 +27,6 @@ export class LayoutComponent implements OnInit {
     this.authenticationService.logout();
   }
 
-
   getInfoAccount(){
 
     this.userService.getAllInfosUser().pipe().subscribe( user => {
@@ -34,7 +34,9 @@ export class LayoutComponent implements OnInit {
            this.authorities = user.roles;
            localStorage.setItem('role_user', this.authorities);
            return this.userInfos;
-      });
+      }, _error => {
+                 this.logout(); 
+        });
   }
 }
 

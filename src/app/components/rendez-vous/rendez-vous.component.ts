@@ -16,6 +16,10 @@ import { UsersService } from 'src/services/users.service';
 })
 export class RendezVousComponent implements OnInit {
 
+  // Pagination parameters.
+  p: number = 1;
+  count: number = 5;
+
   rendezVous!: RendezVous[];
 
   isRegister = false;
@@ -56,7 +60,7 @@ export class RendezVousComponent implements OnInit {
     this.loadAllRendezVous();
   }
 
-  loadAllRendezVous(){
+  loadAllRendezVous() {
 
     this.rendezVouService.getAllRendezVous().pipe().subscribe(
       rendezVous => {

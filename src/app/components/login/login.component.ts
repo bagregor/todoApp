@@ -9,7 +9,8 @@ import { AuthenticationService } from 'src/services/authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  //styleUrls: ['./login.component.css']
+  styleUrls: ['../../../../src/assets/dist/css/app.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         // stop here if form is invalid
-        console.log("Im here")
+        //console.log("Im here")
         if (this.loginForm.invalid) {
             console.log('Veuillez saisir des infos valides!');
         } else {
