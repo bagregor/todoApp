@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         
           this.authenticationService.login(this.authenticationRequest)
           .subscribe((data)=>{
-            console.log("data to store "+JSON.stringify(data));
+            //console.log("data to store "+JSON.stringify(data));
             if (data) {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', data);

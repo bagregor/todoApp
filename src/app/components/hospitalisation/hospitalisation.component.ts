@@ -16,6 +16,10 @@ import { PatientService } from 'src/services/patient.service';
 })
 export class HospitalisationComponent implements OnInit {
 
+  // Pagination parameters.
+  p: number = 1;
+  count: number = 5;
+  
   isRegister = false;
 
   isUpdate = false;

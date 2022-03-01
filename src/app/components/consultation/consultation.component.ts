@@ -14,6 +14,9 @@ import { PatientService } from 'src/services/patient.service';
 })
 export class ConsultationComponent implements OnInit {
 
+  // Pagination parameters.
+  p: number = 1;
+  count: number = 5;
   consultations!: Consultation[];
 
   isRegister = false;

@@ -41,7 +41,7 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr *ngFor="let hospitalisations of hospitalisations;">
+              <tr *ngFor="let hospitalisations of hospitalisations | paginate: { itemsPerPage: count, currentPage: p }">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
@@ -101,7 +101,13 @@
           </table>
           
         </div>
-       
+         <!--Including the pagination control.-->
+         <div class="py-2 px-4 text-sm font-medium text-blue-900 right-90">
+          <pagination-controls
+          (pageChange)="p = $event"   
+          previousLabel="Retour"
+          nextLabel="Avancer"></pagination-controls>
+        </div>
       </div>
       <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-8"
               (click)="openDialogForAddHospitalisation()" data-toggle="modal"  data-target="#exampleModalTwo">

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { SERVER_API_URL } from 'src/app/app.constante';
 import { Accounts } from 'src/model/account';
 import { Register } from 'src/model/register';
 import { User } from 'src/model/user';
+import { UserInfosModify } from 'src/model/userModifyInfos';
 import { UserToModify } from 'src/model/userToModify';
 
 @Injectable({
@@ -17,12 +18,22 @@ export class UsersService {
 
   constructor(private http : HttpClient) { 
     const token = localStorage.getItem('currentUser');
-    //this.user = token;
     this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    //console.log("mon headers "+JSON.stringify(this.headers))
-    //console.log("mon token "+token.accessToken)
-
   }
+
+  getAllMedecinsByLoacaliteOrSpecialite(location : string, specialite : string): Observable<User[]> {
+    let params = new HttpParams()
+                    .set('location', location)
+                    .set('specialite', specialite);
+    return this.http.get<User[]>(SERVER_API_URL+`/auth/getMedecinsByLocationAndSpecialite/`, {params}).pipe(
+      map(users => {
+        return users;
+      }),
+      tap(
+        _ => _,
+        _ => _
+      ));
+  } 
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(SERVER_API_URL+'/auth/users', {headers: this.headers}).pipe(
@@ -82,5 +93,9 @@ export class UsersService {
           _ => _,
           _ => _
       ));
-}
+  }
+
+  updatePasswordForUser(userInfosModify: UserInfosModify) {
+    return this.http.post(SERVER_API_URL+'/auth/modifyPassword', userInfosModify, { headers: this.headers});
+  }
 }

@@ -16,6 +16,9 @@ import { UserToModify } from 'src/model/userToModify';
 })
 export class RegisterUserComponent implements OnInit {
 
+  p: number = 1;
+  count: number = 5;
+  
   users! : User[];
 
   userToModify! : User;

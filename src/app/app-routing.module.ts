@@ -11,6 +11,9 @@ import { PagePrincipalComponent } from './components/page-principal/page-princip
 import { ConsultationComponent } from './components/consultation/consultation.component';
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous.component';
 import { HospitalisationComponent } from './components/hospitalisation/hospitalisation.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { FactureComponent } from './components/facture/facture.component';
 
 /* const routes: Routes = [
   { path: 'medecin', component : MedecinComponent , canActivate: [AuthGuardService] },
@@ -27,11 +30,16 @@ import { HospitalisationComponent } from './components/hospitalisation/hospitali
 ]; */
  const routes: Routes = [
   
-  {
+ {
     path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {
+    
     
     path: 'acceuil',
     component: PagePrincipalComponent,
@@ -75,6 +83,16 @@ import { HospitalisationComponent } from './components/hospitalisation/hospitali
       {
         path: 'hospitalisation',
         component: HospitalisationComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuardService]
+      }, 
+      {
+        path: 'facture',
+        component: FactureComponent,
         canActivate: [AuthGuardService]
       }
     ]

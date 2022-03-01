@@ -23,6 +23,8 @@ import { LitComponent } from './components/lit/lit.component';
 import { ChambreComponent } from './components/chambre/chambre.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './components/home/home.component';
+import { FactureComponent } from './components/facture/facture.component';
 
 //import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory  } from '@stomp/ng2-stompjs';
 /*import { CalendarModule , DateAdapter} from 'angular-calendar';
@@ -47,7 +49,9 @@ import * as moment from 'moment';*/
     RendezVousComponent,
     HospitalisationComponent,
     LitComponent,
-    ChambreComponent
+    ChambreComponent,
+    HomeComponent,
+    FactureComponent
   ],
   imports: [
     BrowserModule,
