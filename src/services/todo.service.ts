@@ -24,15 +24,15 @@ export class TodoService {
       ));
   } 
 
-  addTodo(todo: Todo){
-    return this.http.post(SERVER_API_URL+'/todo', todo);
+  addTodo(todo: Todo) : Observable<Todo>{
+    return this.http.post<Todo>(SERVER_API_URL+'/todo', todo);
   }
 
-  updateTodo(todo: Todo){
-    return this.http.post(SERVER_API_URL+'/todo', todo);
+  updateTodo(todo: Todo) : Observable<Todo>{
+    return this.http.post<Todo>(SERVER_API_URL+'/todo', todo);
   }
 
-  deleteTodo(idTodo: number){
+  deleteTodo(idTodo: number) {
     return this.http.delete(SERVER_API_URL+'/todo/'+ idTodo);
   }
 
