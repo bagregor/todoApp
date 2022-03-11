@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]});
   }
 
-  get f() { return this.loginForm.controls; }
+  get formcontrol() { return this.loginForm.controls; }
 
     onSubmit() {
         // stop here if form is invalid

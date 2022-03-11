@@ -28,9 +28,8 @@ export class AuthenticationService {
     } 
 
     isAuthenticated(): boolean {
-        const user = localStorage.getItem('currentUser');
-        return (user !== null) ? true : false;
-      }
+      return localStorage.getItem('currentUser')  !== null;
+}
 
 
     
