@@ -15,13 +15,7 @@ export class TodoService {
 
   getAll(): Observable<any>{
 
-    return this.http.get<Todo>(SERVER_API_URL+'/todo/list').pipe(
-      map(todo => {
-        return todo;
-      }),
-      tap(
-        _ => _,
-      ));
+    return this.http.get<Todo>(SERVER_API_URL+'/todo/list');
   } 
 
   addTodo(todo: Todo) : Observable<Todo>{
