@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
 ## Development server
-In directory, Run `git checkout template_add` in directory
+In directory, Run `git checkout dev` in directory
 
 Run `npm install or yarn` in directory
 
